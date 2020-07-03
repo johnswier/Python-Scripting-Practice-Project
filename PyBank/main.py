@@ -20,9 +20,9 @@ with open(csvpath) as csvfile:
     for row in csvreader:
         totalMonths += 1
         totalProfitLoss += int(row[1])
-        previousValue = 
-        eachChange = 
-        netChangeList.append(eachChange)
+        #previousValue = 
+        #eachChange = 
+        #netChangeList.append(eachChange)
 
 
     print(netChangeList)

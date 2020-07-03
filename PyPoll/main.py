@@ -1,31 +1,36 @@
 #PyPoll script
-
 import os
 import csv
 
 csvPath = os.path.join("..", "Resources", "election_data.csv")
-
-candidateDict = {}
+outputPath = os.path.join("..", "Analysis", "outputFile.txt")
 
 with open(csvPath) as csvFile:
-
     csvReader = csv.DictReader(csvFile)
-    print("Election results")
-    print("------------------------")
+    
     totalVotes = 0
+    candidateDict = {}
+    
     for row in csvReader:
         totalVotes += 1
         candidate = row['Candidate']
         if candidate not in candidateDict.keys():
             candidateDict[candidate] = 0
         candidateDict[candidate] += 1
-    print("Total Votes:" + " " + str(totalVotes))
-    print("-------------------------")
+    candidateList = []
     for i in candidateDict:
         percentVotes = round(((candidateDict[i]) / totalVotes)*100,5)
-        print(i + ":" + " " + str(percentVotes) + "%" + " " + 
+        eachCandidate = (i + ":" + " " + str(percentVotes) + "%" + " " + 
             str((candidateDict[i])))
-    print("-------------------------")   
+        print(eachCandidate)
+        #candidateList.append(eachCandidate)
+    
+
+    
+    
+    
+    
+       
 
     mostVotes = max(candidateDict["Khan"], candidateDict["Correy"], 
                 candidateDict["Li"], candidateDict["O'Tooley"])
@@ -33,15 +38,22 @@ with open(csvPath) as csvFile:
     winner = list(candidateDict.keys())[list(candidateDict.values())
                 .index(mostVotes)]
     
-    print("Winner:" + " " + winner)
-
-
-electionText = (f"Winner: + " " + winner")
-
-with open(electionText, 'w') as writerfile:
-    writerfile.write(electionText)
-
     
+    
+    electionText = (f"Election results\n"
+                    f"--------------------------\n" 
+                    f"Total Votes: {totalVotes}\n"
+                    f"--------------------------\n"
+                    f"{eachCandidate}\n"
+                    f"--------------------------\n"
+                    f"\n\nWinner: {winner}\n")
+
+
+
+
+with open(outputPath, 'w') as writerfile:
+    
+    writerfile.write(electionText)
     
     
     
