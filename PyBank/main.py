@@ -9,20 +9,21 @@ with open(csvpath) as csvfile:
 
     csvreader = csv.reader(csvfile, delimiter = ',' )
     header = next(csvreader)
-    firstRow = next(csvreader)
-    print(header)
-    print(firstRow)
+    
+    
+    
 
     totalMonths = 0
     totalProfitLoss = 0
     netChangeList = []
-    previousRow = firstRow
+    previousValue = 0
     for row in csvreader:
         totalMonths += 1
         totalProfitLoss += int(row[1])
-        
-        eachChange = int(row[1]) - int(previousRow[1])
+        previousValue = 
+        eachChange = 
         netChangeList.append(eachChange)
+
 
     print(netChangeList)
     print(totalMonths)
