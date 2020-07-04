@@ -3,7 +3,7 @@ import os
 import csv
 
 csvPath = os.path.join("..", "Resources", "election_data.csv")
-outputPath = os.path.join("..", "Analysis", "outputFile.txt")
+outputPath = os.path.join("..", "Analysis", "outputPyPoll.txt")
 
 with open(csvPath) as csvFile:
     csvReader = csv.DictReader(csvFile)
