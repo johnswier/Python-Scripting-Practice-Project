@@ -10,28 +10,23 @@ with open(csvPath) as csvFile:
     
     totalVotes = 0
     candidateDict = {}
-    
     for row in csvReader:
         totalVotes += 1
         candidate = row['Candidate']
         if candidate not in candidateDict.keys():
             candidateDict[candidate] = 0
         candidateDict[candidate] += 1
-    candidateList = []
+    
+    print(f"Election results\n"
+          f"--------------------------\n") 
+    print(f"Total Votes: {totalVotes}\n")
+    print(f"--------------------------\n")
+    
     for i in candidateDict:
-        percentVotes = round(((candidateDict[i]) / totalVotes)*100,5)
+        percentVotes = round(((candidateDict[i]) / totalVotes)*100,3)
         eachCandidate = (i + ":" + " " + str(percentVotes) + "%" + " " + 
-            str((candidateDict[i])))
+            "(" + str((candidateDict[i])) + ")")
         print(eachCandidate)
-        #candidateList.append(eachCandidate)
-    
-
-    
-    
-    
-    
-       
-
     mostVotes = max(candidateDict["Khan"], candidateDict["Correy"], 
                 candidateDict["Li"], candidateDict["O'Tooley"])
 
@@ -39,57 +34,30 @@ with open(csvPath) as csvFile:
                 .index(mostVotes)]
     
     
+    electionText1 = (f"--------------------------\n"
+                    f"\n\nWinner: {winner}\n"
+                    f"--------------------------\n")
+    print(electionText1)                
     
-    electionText = (f"Election results\n"
+    
+with open(outputPath, 'w') as writerfile:
+    electionText2 = (f"Election results\n"
                     f"--------------------------\n" 
                     f"Total Votes: {totalVotes}\n"
-                    f"--------------------------\n"
-                    f"{eachCandidate}\n"
-                    f"--------------------------\n"
-                    f"\n\nWinner: {winner}\n")
+                    f"--------------------------\n")
+    writerfile.write(electionText2)
 
+    for i in candidateDict:
+        candidateName = i
+        candidatePercent = round(((candidateDict[i]) / totalVotes)*100,3)
+        candidateVote = candidateDict[i]
 
-
-
-with open(outputPath, 'w') as writerfile:
-    
-    writerfile.write(electionText)
-    
-    
-    
-    
-    
-    
-    #other method....
+        candidateText = (f"{candidateName}: {candidatePercent}% ({candidateVote})\n")
     
 
-    # totalVotes = 0
-    # candidateList = []
-    # Khan = 0
-    # Correy = 0
-    # Li = 0
-    # Tooley = 0
-    # for row in csvReader: 
-    #     totalVotes += 1 
-    #     if row[2] not in candidateList: 
-    #         candidateList.append(row[2])
+        writerfile.write(candidateText)
     
-    #     if row[2] == candidateList[0]:
-    #         Khan += 1
-    #     elif row[2] == candidateList[1]:
-    #         Correy += 1
-    #     elif row[2] == candidateList[2]:
-    #         Li += 1
-    #     elif row[2] == candidateList[3]:
-    #         Tooley += 1
-    
-    # percentKhan = round(((Khan / totalVotes) * 100 ), 5)
-    # percentCorrey = round(((Correy / totalVotes) * 100), 5) 
-    # percentLi = round(((Li / totalVotes)*100),5)
-    # percentTooley = round(((Tooley / totalVotes)*100),5)
-
-    # mostVotes = max([Khan, Correy, Li, Tooley])
-
+    writerfile.write(electionText1)
         
         
 

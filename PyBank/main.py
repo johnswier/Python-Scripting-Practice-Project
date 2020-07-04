@@ -10,9 +10,6 @@ with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ',' )
     header = next(csvreader)
     
-    
-    
-
     totalMonths = 0
     totalProfitLoss = 0
     netChangeList = []
@@ -20,9 +17,10 @@ with open(csvpath) as csvfile:
     for row in csvreader:
         totalMonths += 1
         totalProfitLoss += int(row[1])
-        #previousValue = 
-        #eachChange = 
-        #netChangeList.append(eachChange)
+        previousValue += int(row[1])
+        Change = int(row[1]) - previousValue
+        netChangeList.append(Change)
+        
 
 
     print(netChangeList)
