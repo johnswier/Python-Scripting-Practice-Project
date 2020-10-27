@@ -1,3 +1,4 @@
+### README update in progress..
 # Python Scripting Practice Project
 
 ## Financial Exploratory Analysis: 
@@ -26,3 +27,5 @@ This project consisted of calculating the following based on a sample voter data
   * The total number of votes each candidate won
 
   * The winner of the election based on popular vote
+
+
